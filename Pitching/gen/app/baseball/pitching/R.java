@@ -15,12 +15,16 @@ public final class R {
     }
     public static final class id {
         public static final int ball=0x7f050001;
+        public static final int column1=0x7f050005;
+        public static final int column2=0x7f050006;
         public static final int foulBall=0x7f050002;
         public static final int hit=0x7f050003;
+        public static final int outputList=0x7f050004;
         public static final int strike=0x7f050000;
     }
     public static final class layout {
         public static final int main=0x7f030000;
+        public static final int output_template=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
