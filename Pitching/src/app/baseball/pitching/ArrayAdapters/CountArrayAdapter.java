@@ -66,7 +66,33 @@ public class CountArrayAdapter extends ArrayAdapter<IStrikeCount>
         public TextView StrikeCount;
         
     }
+    public int getStrike()
+	{
+		int _strike = 0;
+		if(_strike <= 0)
+		{
+			_strike++;
+		}
+		if(_strike == 2)
+		{
+			_strike = 0;
+		}				    	
+		return _strike;
+	}
 
+	public int getBall()
+	{
+		int _ball = 0;
+		if(_ball <= 0)
+		{
+			_ball++;
+		}
+		if(_ball == 4)
+		{
+			_ball = 0;
+		}				    	
+		return _ball;
+	}
 	
 	
 	
