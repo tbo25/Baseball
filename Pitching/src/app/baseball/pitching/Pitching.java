@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import app.baseball.pitching.ArrayAdapters.CountArrayAdapter;
 import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
 import app.baseball.pitching.Models.Interfaces.ICoordinate;
 import app.baseball.pitching.Models.Interfaces.IPitch;
-import app.baseball.pitching.Models.Interfaces.IStrikeCount;
 import app.baseball.pitching.Models.Pitch;
 import app.baseball.pitching.Models.PitchLocation;
-import app.baseball.pitching.Models.StrikeCount;
 
 import java.util.ArrayList;
 
