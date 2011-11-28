@@ -21,6 +21,7 @@ public final class R {
         public static final int hit=0x7f050003;
         public static final int outputList=0x7f050004;
         public static final int strike=0x7f050000;
+        public static final int strikeCount=0x7f050007;
     }
     public static final class layout {
         public static final int main=0x7f030000;

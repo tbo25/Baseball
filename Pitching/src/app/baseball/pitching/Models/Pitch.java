@@ -14,10 +14,10 @@ public class Pitch implements IPitch
 
 
     //FIELDS
-    private ICoordinate _coordinate;
+    public ICoordinate _coordinate;
     private boolean _isStrike = false;
-
-
+    
+    
     //PROPERTIES
     public ICoordinate getCoordinate()
     {
@@ -35,7 +35,7 @@ public class Pitch implements IPitch
             return "Strike";
         return "Ball";
     }
-
-
+    
+   
     //METHODS
 }

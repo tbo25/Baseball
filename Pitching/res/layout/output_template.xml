@@ -11,9 +11,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-    <TextView android:id="@+id/column2"
+    <TextView 
+        	android:id="@+id/column2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+    <TextView 
+        	android:id="@+id/strikeCount"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        />
 
 </LinearLayout>

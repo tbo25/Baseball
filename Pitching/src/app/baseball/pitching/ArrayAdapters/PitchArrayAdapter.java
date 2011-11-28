@@ -1,5 +1,6 @@
 package app.baseball.pitching.ArrayAdapters;
 
+import android.R.string;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import app.baseball.pitching.Models.Interfaces.IPitch;
+import app.baseball.pitching.Models.Interfaces.IStrikeCount;
 import app.baseball.pitching.R;
 
 import java.util.ArrayList;
@@ -54,14 +56,16 @@ public class PitchArrayAdapter extends ArrayAdapter<IPitch>
         {
             viewHolder = (ViewHolder)rowView.getTag();
         }
-
-        viewHolder.Column1.setText(this._pitches.get(position).getCoordinate().toString());
+        
+        IPitch p = this._pitches.get(position);
+        
+        viewHolder.Column1.setText(p.getCoordinate().toString());
         viewHolder.Column2.setText(this._pitches.get(position).getIsStrikeOutput());
-
         return rowView;
     }
-
-    private static class ViewHolder
+    
+    
+    public static class ViewHolder
     {
         public TextView Column1;
         public TextView Column2;

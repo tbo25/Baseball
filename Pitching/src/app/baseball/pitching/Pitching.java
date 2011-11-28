@@ -5,21 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import app.baseball.pitching.ArrayAdapters.CountArrayAdapter;
 import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
 import app.baseball.pitching.Models.Interfaces.ICoordinate;
 import app.baseball.pitching.Models.Interfaces.IPitch;
+import app.baseball.pitching.Models.Interfaces.IStrikeCount;
 import app.baseball.pitching.Models.Pitch;
 import app.baseball.pitching.Models.PitchLocation;
+import app.baseball.pitching.Models.StrikeCount;
 
 import java.util.ArrayList;
 
 public class Pitching extends Activity {
-    //CONTROLS
+	//CONTROLS
     private Button _strike, _ball, _foulBall, _hit;
     private ListView _outputList;
 
     //ADAPTERS
     private PitchArrayAdapter _pitchArrayAdapter;
+    private CountArrayAdapter _countArrayAdapter;
 
 
     //PUBLIC METHODS
@@ -52,6 +56,7 @@ public class Pitching extends Activity {
             public void onClick(View v)
             {
                 addPitch(true);
+                
             }
         });
 
@@ -86,7 +91,11 @@ public class Pitching extends Activity {
     private void addPitch(boolean isStrike)
     {
         ICoordinate coordinate = new PitchLocation(0, 0);
-        IPitch pitch = new Pitch(coordinate, isStrike);
-        this._pitchArrayAdapter.add(pitch);
+        IPitch Pitch = new Pitch(coordinate, isStrike);
+        this._pitchArrayAdapter.add(Pitch);
+      
+        IStrikeCount StrikeCount = new StrikeCount(0, 0);
+        this._countArrayAdapter.add(StrikeCount);
+               
     }
 }
