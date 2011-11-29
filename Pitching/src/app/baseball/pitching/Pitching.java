@@ -44,10 +44,12 @@ public class Pitching extends Activity {
 
 	// INITIALIZATION METHODS
 	private void setup() {
+		this.InitializePitchCounter();
+		
 		this.InitializeArrayAdapters();
 		this.InitializeButtons();
 		
-		this.InitializePitchCounter();
+		this.UpdateUI();
 	}
 
 	private void InitializeButtons() {
@@ -55,7 +57,7 @@ public class Pitching extends Activity {
 		this._strike.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				_pitchCounter.addStrike();
-				RefreshPitchCountView();
+				UpdateUI();
 			}
 		});
 
@@ -63,7 +65,7 @@ public class Pitching extends Activity {
 		this._ball.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				_pitchCounter.addBall();
-				RefreshPitchCountView();
+				UpdateUI();
 			}
 		});
 
@@ -71,13 +73,17 @@ public class Pitching extends Activity {
 		this._foulBall.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				_pitchCounter.addFoulBall();
-				RefreshPitchCountView();
+				UpdateUI();
 			}
 		});
 
 		this._hit = (Button) findViewById(R.id.hit);
-		this._hit.setClickable(false);
-		this._hit.setEnabled(false);
+		this._hit.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				_pitchCounter.reset();
+				UpdateUI();
+			}
+		});
 	}
 
 	private void InitializePitchCounter(){
@@ -85,9 +91,25 @@ public class Pitching extends Activity {
 		this._pitchCounterView = (TextView) findViewById(R.id.pitchCounter);
 	}
 	
-	private void RefreshPitchCountView() {
-		this._pitchCounterView.setText(this._pitchCounter.getPitchCount());
+	private void UpdateUI() {
+		this.RefreshPitchCountView();
+		this.UpdateButtonsEnabledState(this._pitchCounter.getIsCountFinished());
 	}
+	
+	private void RefreshPitchCountView() {
+		this._pitchCounterView.setText(this.getPitchCount());
+	}
+	
+	private String getPitchCount() {
+		return String.format("B-%s S-%s T-%s", this._pitchCounter.getBallCount(), this._pitchCounter.getStrikeCount(), this._pitchCounter.getTotalPitchCount());
+	}
+	
+	private void UpdateButtonsEnabledState(Boolean countFinished) {
+		this._strike.setEnabled(!countFinished);
+		this._ball.setEnabled(!countFinished);
+		this._foulBall.setEnabled(!countFinished);		
+		this._hit.setEnabled(countFinished);
+	}	
 	
 	private void InitializeArrayAdapters() {
 //		this._pitchArrayAdapter = new PitchArrayAdapter(this,

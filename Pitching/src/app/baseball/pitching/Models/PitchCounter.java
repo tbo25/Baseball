@@ -12,7 +12,7 @@ public class PitchCounter implements IPitchCounter {
 	private int _ballCount = 0;
 	private int _strikeCount = 0;	
 	private int _foulBallCount = 0;
-	
+		
 	//PROPERTIES
 	public int getBallCount() {
 		return this._ballCount;
@@ -28,6 +28,10 @@ public class PitchCounter implements IPitchCounter {
 
 	public int getTotalPitchCount() {
 		return this.getBallCount() + this.getStrikeCount() + this.getFoulBallCount();
+	}
+	
+	public Boolean getIsCountFinished() {
+		return this.getBallCount() == 4 || this.getStrikeCount() == 3;
 	}
 	
 	//METHODS
@@ -50,7 +54,9 @@ public class PitchCounter implements IPitchCounter {
 		return this.getFoulBallCount();
 	}
 	
-	public String getPitchCount() {
-		return String.format("B-%s S-%s T-%s", this.getBallCount(), this.getStrikeCount(), this.getTotalPitchCount());
+	public void reset() {
+		this._strikeCount = 0;
+		this._ballCount = 0;
+		this._foulBallCount	= 0;
 	}
 }
