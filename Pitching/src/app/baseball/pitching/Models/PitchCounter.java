@@ -1,62 +1,68 @@
 package app.baseball.pitching.Models;
 
+import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
+import app.baseball.pitching.Models.Interfaces.IPitch;
 import app.baseball.pitching.Models.Interfaces.IPitchCounter;
+import app.baseball.pitching.Models.Pitch;
 
 public class PitchCounter implements IPitchCounter {
 	
 	//CONSTRUCTORS
-	public PitchCounter() {		
+	public PitchCounter(PitchArrayAdapter pitchAdapter) {
+		this._pitchArrayAdapter = pitchAdapter;
 	}
 	
 	//FIELDS
-	private int _ballCount = 0;
-	private int _strikeCount = 0;	
-	private int _foulBallCount = 0;
+	private PitchArrayAdapter _pitchArrayAdapter;
 		
 	//PROPERTIES
 	public int getBallCount() {
-		return this._ballCount;
+		return this._pitchArrayAdapter.getBallCount();
 	}
 
 	public int getStrikeCount() {
-		return this._strikeCount;
+		return this._pitchArrayAdapter.getStrikeCount();
 	}
 
 	public int getFoulBallCount() {
-		return this._foulBallCount;
+		return this._pitchArrayAdapter.getFoulBallCount();
 	}
 
 	public int getTotalPitchCount() {
-		return this.getBallCount() + this.getStrikeCount() + this.getFoulBallCount();
+		return this._pitchArrayAdapter.getTotalPitchCount();
 	}
 	
-	public Boolean getIsCountFinished() {
+	public boolean getIsCountFinished() {
 		return this.getBallCount() == 4 || this.getStrikeCount() == 3;
 	}
 	
+	public PitchArrayAdapter getPitchAdapter() {
+		return this._pitchArrayAdapter;
+	}
+	
+	
 	//METHODS
-	public int addBall() {
-		this._ballCount++;
-		return this.getBallCount();
+	public void addBall() {
+		IPitch pitch = new Pitch(false);
+		this.addPitch(pitch);
 	}
 	
-	public int addStrike() {
-		this._strikeCount++;
-		return this.getStrikeCount();
+	public void addStrike() {
+		IPitch pitch = new Pitch(true);
+		this.addPitch(pitch);
 	}
 	
-	public int addFoulBall() {
-		if (this.getStrikeCount() < 2)
-			this.addStrike();
-		else
-			this._foulBallCount++;
-		
-		return this.getFoulBallCount();
+	public void addFoulBall() {		
+		IPitch pitch = new Pitch(true);
+		pitch.setIsFoulBall(true);
+		this.addPitch(pitch);
 	}
 	
 	public void reset() {
-		this._strikeCount = 0;
-		this._ballCount = 0;
-		this._foulBallCount	= 0;
+		this._pitchArrayAdapter.clear();
+	}
+	
+	public void addPitch(IPitch pitch){
+		this._pitchArrayAdapter.add(pitch);
 	}
 }

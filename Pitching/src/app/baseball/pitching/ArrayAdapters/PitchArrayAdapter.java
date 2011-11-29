@@ -58,6 +58,46 @@ public class PitchArrayAdapter extends ArrayAdapter<IPitch> {
 		return rowView;
 	}
 
+	public int getStrikeCount() {
+		int count = 0;
+		for (IPitch pitch : this._pitches)
+		{
+			if (pitch.getIsStrike())
+			{
+				if (count < 2)
+					count++;
+				else if (!pitch.getIsFoulBall())
+					return 3;
+			}
+		}
+		
+		return count;
+	}
+	
+	public int getBallCount() {
+		int count = 0;
+		for (IPitch pitch : this._pitches)
+			if (!pitch.getIsStrike())
+				count++;
+		
+		return count;
+	}
+	
+	public int getFoulBallCount() {
+		int count = 0;
+		for (IPitch pitch : this._pitches)
+			if (pitch.getIsFoulBall())
+				count++;
+		
+		return count;
+	}
+	
+	public int getTotalPitchCount() {
+		if (this._pitches != null)
+			return this._pitches.size();
+		return 0;
+	}
+	
 	public static class ViewHolder {
 		public TextView Column1;
 		public TextView Column2;

@@ -7,11 +7,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
-import app.baseball.pitching.Models.Interfaces.ICoordinate;
 import app.baseball.pitching.Models.Interfaces.IPitch;
-import app.baseball.pitching.Models.Pitch;
+import app.baseball.pitching.Models.Interfaces.IPitchCounter;
 import app.baseball.pitching.Models.PitchCounter;
-import app.baseball.pitching.Models.PitchLocation;
 
 import java.util.ArrayList;
 
@@ -22,13 +20,9 @@ public class Pitching extends Activity {
 	private TextView _pitchCounterView;
 	
 	// OBJECTS
-	private PitchCounter _pitchCounter;
+	private IPitchCounter _pitchCounter;
 	
 	
-	// ADAPTERS
-	//TODO: Move this into a PitchCounter object
-	//private PitchArrayAdapter _pitchArrayAdapter;
-
 	// PUBLIC METHODS
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +39,6 @@ public class Pitching extends Activity {
 	// INITIALIZATION METHODS
 	private void setup() {
 		this.InitializePitchCounter();
-		
-		this.InitializeArrayAdapters();
 		this.InitializeButtons();
 		
 		this.UpdateUI();
@@ -87,7 +79,10 @@ public class Pitching extends Activity {
 	}
 
 	private void InitializePitchCounter(){
-		this._pitchCounter = new PitchCounter();
+		this._pitchCounter = new PitchCounter(new PitchArrayAdapter(this, R.layout.output_template, new ArrayList<IPitch>()));
+		this._outputList = (ListView) findViewById(R.id.outputList);
+		this._outputList.setAdapter(this._pitchCounter.getPitchAdapter());		
+		
 		this._pitchCounterView = (TextView) findViewById(R.id.pitchCounter);
 	}
 	
@@ -109,13 +104,5 @@ public class Pitching extends Activity {
 		this._ball.setEnabled(!countFinished);
 		this._foulBall.setEnabled(!countFinished);		
 		this._hit.setEnabled(countFinished);
-	}	
-	
-	private void InitializeArrayAdapters() {
-//		this._pitchArrayAdapter = new PitchArrayAdapter(this,
-//				R.layout.output_template, new ArrayList<IPitch>());
-//		this._outputList = (ListView) findViewById(R.id.outputList);
-//		this._outputList.setAdapter(this._pitchArrayAdapter);
 	}
-
 }
