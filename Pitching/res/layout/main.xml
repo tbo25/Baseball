@@ -17,26 +17,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Strike" />
+            android:text="@string/addStrike" />
 
         <Button
             android:id="@+id/ball"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Ball" />
+            android:text="@string/addBall" />
         <Button
             android:id="@+id/foulBall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Foul Ball" />
+            android:text="@string/addFoulBall" />
         <Button
-            android:id="@+id/hit"
+            android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add Hit" />
+            android:text="@string/clear" />
     </LinearLayout>
     <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

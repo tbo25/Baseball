@@ -15,10 +15,10 @@ public final class R {
     }
     public static final class id {
         public static final int ball=0x7f050001;
+        public static final int clear=0x7f050003;
         public static final int column1=0x7f050006;
         public static final int column2=0x7f050007;
         public static final int foulBall=0x7f050002;
-        public static final int hit=0x7f050003;
         public static final int outputList=0x7f050005;
         public static final int pitchCounter=0x7f050004;
         public static final int strike=0x7f050000;
@@ -29,7 +29,11 @@ public final class R {
         public static final int output_template=0x7f030001;
     }
     public static final class string {
+        public static final int addBall=0x7f040003;
+        public static final int addFoulBall=0x7f040004;
+        public static final int addStrike=0x7f040002;
         public static final int app_name=0x7f040001;
+        public static final int clear=0x7f040005;
         public static final int hello=0x7f040000;
     }
 }

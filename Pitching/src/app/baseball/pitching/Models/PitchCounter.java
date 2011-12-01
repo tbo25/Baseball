@@ -1,6 +1,6 @@
 package app.baseball.pitching.Models;
 
-import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
+import app.baseball.pitching.ArrayAdapters.IPitchArrayAdapter;
 import app.baseball.pitching.Models.Interfaces.IPitch;
 import app.baseball.pitching.Models.Interfaces.IPitchCounter;
 import app.baseball.pitching.Models.Pitch;
@@ -8,12 +8,12 @@ import app.baseball.pitching.Models.Pitch;
 public class PitchCounter implements IPitchCounter {
 	
 	//CONSTRUCTORS
-	public PitchCounter(PitchArrayAdapter pitchAdapter) {
+	public PitchCounter(IPitchArrayAdapter pitchAdapter) {
 		this._pitchArrayAdapter = pitchAdapter;
 	}
 	
 	//FIELDS
-	private PitchArrayAdapter _pitchArrayAdapter;
+	private IPitchArrayAdapter _pitchArrayAdapter;
 		
 	//PROPERTIES
 	public int getBallCount() {
@@ -36,7 +36,7 @@ public class PitchCounter implements IPitchCounter {
 		return this.getBallCount() == 4 || this.getStrikeCount() == 3;
 	}
 	
-	public PitchArrayAdapter getPitchAdapter() {
+	public IPitchArrayAdapter getPitchAdapter() {
 		return this._pitchArrayAdapter;
 	}
 	

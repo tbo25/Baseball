@@ -12,7 +12,7 @@ import app.baseball.pitching.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PitchArrayAdapter extends ArrayAdapter<IPitch> {
+public class PitchArrayAdapter extends ArrayAdapter<IPitch> implements IPitchArrayAdapter {
 	// CONSTRUCTORS
 	public PitchArrayAdapter(Activity context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -58,6 +58,8 @@ public class PitchArrayAdapter extends ArrayAdapter<IPitch> {
 		return rowView;
 	}
 
+
+	// IPitchArrayAdapter
 	public int getStrikeCount() {
 		int count = 0;
 		for (IPitch pitch : this._pitches)
@@ -102,5 +104,4 @@ public class PitchArrayAdapter extends ArrayAdapter<IPitch> {
 		public TextView Column1;
 		public TextView Column2;
 	}
-
 }

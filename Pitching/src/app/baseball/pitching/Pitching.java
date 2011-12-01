@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Pitching extends Activity {
 	// CONTROLS
-	private Button _strike, _ball, _foulBall, _hit;
+	private Button _strike, _ball, _foulBall, _clear;
 	private ListView _outputList;
 	private TextView _pitchCounterView;
 	
@@ -69,8 +69,8 @@ public class Pitching extends Activity {
 			}
 		});
 
-		this._hit = (Button) findViewById(R.id.hit);
-		this._hit.setOnClickListener(new View.OnClickListener() {
+		this._clear = (Button) findViewById(R.id.clear);
+		this._clear.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				_pitchCounter.reset();
 				UpdateUI();
@@ -81,7 +81,9 @@ public class Pitching extends Activity {
 	private void InitializePitchCounter(){
 		this._pitchCounter = new PitchCounter(new PitchArrayAdapter(this, R.layout.output_template, new ArrayList<IPitch>()));
 		this._outputList = (ListView) findViewById(R.id.outputList);
-		this._outputList.setAdapter(this._pitchCounter.getPitchAdapter());		
+		
+		PitchArrayAdapter adapter = (PitchArrayAdapter)this._pitchCounter.getPitchAdapter();
+		this._outputList.setAdapter(adapter);		
 		
 		this._pitchCounterView = (TextView) findViewById(R.id.pitchCounter);
 	}
@@ -103,6 +105,6 @@ public class Pitching extends Activity {
 		this._strike.setEnabled(!countFinished);
 		this._ball.setEnabled(!countFinished);
 		this._foulBall.setEnabled(!countFinished);		
-		this._hit.setEnabled(countFinished);
+		this._clear.setEnabled(countFinished);
 	}
 }

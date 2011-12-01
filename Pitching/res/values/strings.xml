@@ -3,5 +3,9 @@
 
     <string name="hello">Hello World, PitchingActivity!</string>
     <string name="app_name">Pitching</string>
+    <string name="addStrike">Strike</string>
+    <string name="addBall">Ball</string>
+    <string name="addFoulBall">Foul Ball</string>
+    <string name="clear">Clear</string>
 
 </resources>
