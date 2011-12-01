@@ -1,6 +1,7 @@
 package app.baseball.pitching.Models;
 
-import app.baseball.pitching.ArrayAdapters.IPitchArrayAdapter;
+import java.util.ArrayList;
+
 import app.baseball.pitching.Models.Interfaces.IPitch;
 import app.baseball.pitching.Models.Interfaces.IPitchCounter;
 import app.baseball.pitching.Models.Pitch;
@@ -8,36 +9,59 @@ import app.baseball.pitching.Models.Pitch;
 public class PitchCounter implements IPitchCounter {
 	
 	//CONSTRUCTORS
-	public PitchCounter(IPitchArrayAdapter pitchAdapter) {
-		this._pitchArrayAdapter = pitchAdapter;
+	public PitchCounter() {
+		this._pitches = new ArrayList<IPitch>();
+	}
+	public PitchCounter(ArrayList<IPitch> pitches) {
+		this._pitches = pitches;
 	}
 	
 	//FIELDS
-	private IPitchArrayAdapter _pitchArrayAdapter;
+	private ArrayList<IPitch> _pitches;
 		
 	//PROPERTIES
 	public int getBallCount() {
-		return this._pitchArrayAdapter.getBallCount();
+		int count = 0;
+		for (IPitch pitch : this._pitches)
+			if (!pitch.getIsStrike())
+				count++;
+
+		return count;
 	}
 
 	public int getStrikeCount() {
-		return this._pitchArrayAdapter.getStrikeCount();
+		int count = 0;
+		for (IPitch pitch : this._pitches) {
+			if (pitch.getIsStrike()) {
+				if (count < 2)
+					count++;
+				else if (!pitch.getIsFoulBall())
+					return 3;
+			}
+		}
+
+		return count;
 	}
 
 	public int getFoulBallCount() {
-		return this._pitchArrayAdapter.getFoulBallCount();
+		int count = 0;
+		for (IPitch pitch : this._pitches)
+			if (pitch.getIsFoulBall())
+				count++;
+
+		return count;
 	}
 
 	public int getTotalPitchCount() {
-		return this._pitchArrayAdapter.getTotalPitchCount();
+		return this._pitches.size();
 	}
 	
 	public boolean getIsCountFinished() {
 		return this.getBallCount() == 4 || this.getStrikeCount() == 3;
 	}
 	
-	public IPitchArrayAdapter getPitchAdapter() {
-		return this._pitchArrayAdapter;
+	public ArrayList<IPitch> getPitches() {
+		return this._pitches;
 	}
 	
 	
@@ -58,11 +82,11 @@ public class PitchCounter implements IPitchCounter {
 		this.addPitch(pitch);
 	}
 	
-	public void reset() {
-		this._pitchArrayAdapter.clear();
+	public void addPitch(IPitch pitch){
+		this._pitches.add(pitch);
 	}
 	
-	public void addPitch(IPitch pitch){
-		this._pitchArrayAdapter.add(pitch);
+	public void reset() {
+		this._pitches.clear();
 	}
 }

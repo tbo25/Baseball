@@ -1,6 +1,6 @@
 package app.baseball.pitching.Models.Interfaces;
 
-import app.baseball.pitching.ArrayAdapters.IPitchArrayAdapter;
+import java.util.ArrayList;
 
 public interface IPitchCounter {
 	//Get Information about the Count
@@ -9,7 +9,7 @@ public interface IPitchCounter {
 	int getFoulBallCount();
 	int getTotalPitchCount();
 	boolean getIsCountFinished();
-	IPitchArrayAdapter getPitchAdapter();
+	ArrayList<IPitch> getPitches();
 	
 	//Update Information about the Count
 	void addStrike();

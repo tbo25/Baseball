@@ -7,11 +7,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
-import app.baseball.pitching.Models.Interfaces.IPitch;
 import app.baseball.pitching.Models.Interfaces.IPitchCounter;
 import app.baseball.pitching.Models.PitchCounter;
-
-import java.util.ArrayList;
 
 public class Pitching extends Activity {
 	// CONTROLS
@@ -78,13 +75,12 @@ public class Pitching extends Activity {
 		});
 	}
 
-	private void InitializePitchCounter(){
-		this._pitchCounter = new PitchCounter(new PitchArrayAdapter(this, R.layout.output_template, new ArrayList<IPitch>()));
+	private void InitializePitchCounter() {
+		this._pitchCounter = new PitchCounter();
+		PitchArrayAdapter adapter = new PitchArrayAdapter(this, R.layout.output_template, this._pitchCounter.getPitches()); 
+		
 		this._outputList = (ListView) findViewById(R.id.outputList);
-		
-		PitchArrayAdapter adapter = (PitchArrayAdapter)this._pitchCounter.getPitchAdapter();
 		this._outputList.setAdapter(adapter);		
-		
 		this._pitchCounterView = (TextView) findViewById(R.id.pitchCounter);
 	}
 	

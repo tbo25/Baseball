@@ -12,7 +12,7 @@ import app.baseball.pitching.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PitchArrayAdapter extends ArrayAdapter<IPitch> implements IPitchArrayAdapter {
+public class PitchArrayAdapter extends ArrayAdapter<IPitch> {
 	// CONSTRUCTORS
 	public PitchArrayAdapter(Activity context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -56,48 +56,6 @@ public class PitchArrayAdapter extends ArrayAdapter<IPitch> implements IPitchArr
 		viewHolder.Column2.setText(this._pitches.get(position)
 				.getIsStrikeOutput());
 		return rowView;
-	}
-
-
-	// IPitchArrayAdapter
-	public int getStrikeCount() {
-		int count = 0;
-		for (IPitch pitch : this._pitches)
-		{
-			if (pitch.getIsStrike())
-			{
-				if (count < 2)
-					count++;
-				else if (!pitch.getIsFoulBall())
-					return 3;
-			}
-		}
-		
-		return count;
-	}
-	
-	public int getBallCount() {
-		int count = 0;
-		for (IPitch pitch : this._pitches)
-			if (!pitch.getIsStrike())
-				count++;
-		
-		return count;
-	}
-	
-	public int getFoulBallCount() {
-		int count = 0;
-		for (IPitch pitch : this._pitches)
-			if (pitch.getIsFoulBall())
-				count++;
-		
-		return count;
-	}
-	
-	public int getTotalPitchCount() {
-		if (this._pitches != null)
-			return this._pitches.size();
-		return 0;
 	}
 	
 	public static class ViewHolder {
