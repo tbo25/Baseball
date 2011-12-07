@@ -1,23 +1,34 @@
 package app.baseball.pitching;
 
+//import com.j256.ormlite.android.apptools.OpenHelperManager;
+//import com.j256.ormlite.dao.Dao;
+//import com.j256.ormlite.misc.SqlExceptionUtil;
+//
+//import java.sql.SQLException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+//import android.util.Log;
 import app.baseball.pitching.ArrayAdapters.PitchArrayAdapter;
 import app.baseball.pitching.Models.Interfaces.IPitchCounter;
 import app.baseball.pitching.Models.PitchCounter;
+//import app.baseball.pitching.Models.SimpleData;
+//import app.baseball.database.DatabaseHelper;
+
 
 public class Pitching extends Activity {
 	// CONTROLS
 	private Button _strike, _ball, _foulBall, _clear;
 	private ListView _outputList;
 	private TextView _pitchCounterView;
+//	private TextView _dbOutput;
 	
 	// OBJECTS
 	private IPitchCounter _pitchCounter;
+//	private DatabaseHelper _databaseHelper = null;
 	
 	
 	// PUBLIC METHODS
@@ -25,6 +36,9 @@ public class Pitching extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+		//this._dbOutput = (TextView) findViewById(R.id.pitchCounter);
+		//this.trydb();
 	}
 
 	@Override
@@ -103,4 +117,22 @@ public class Pitching extends Activity {
 		this._foulBall.setEnabled(!countFinished);		
 		this._clear.setEnabled(countFinished);
 	}
+	
+//	private DatabaseHelper getDBHelper() {
+//		if (this._databaseHelper == null)
+//			this._databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+//		return this._databaseHelper;
+//	}
+//	
+//	private void trydb() {
+//		
+//		
+//		try {
+//			Dao<SimpleData, Integer> sdDao = this.getDBHelper().getSimpleDataDao();
+//			
+//			
+//		} catch (SQLException e) {
+//			Log.e("Pitching", "Database Exception", e);
+//		}
+//	}
 }
